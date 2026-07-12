@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07111f" />
+    <meta name="description" content="A fast, installable weather app powered by Open-Meteo." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icons/icon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Skyline Weather</title>
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SKYLINE</p>
+          <h1>Weather, without the noise.</h1>
+        </div>
+        <button id="unitToggle" class="unit-toggle" type="button" aria-label="Switch temperature unit">°C</button>
+      </header>
+
+      <form id="searchForm" class="search" role="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.4A7.75 7.75 0 1 1 3.5 11.25a7.75 7.75 0 0 1 15.5 0Z"/></svg>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="Search a city" aria-label="Search a city" />
+        <button class="locate-button" id="locateButton" type="button" aria-label="Use my location" title="Use my location">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-14v5l3 2"/></svg>
+        </button>
+      </form>
+      <div id="searchResults" class="search-results" hidden></div>
+
+      <section id="status" class="status" aria-live="polite">Getting your forecast…</section>
+
+      <div id="weatherContent" hidden>
+        <section class="current card">
+          <div class="current-copy">
+            <div class="location-line">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <span id="locationName">—</span>
+            </div>
+            <p id="currentDate" class="muted">—</p>
+            <div class="temperature-row">
+              <span id="currentTemp" class="temperature">—</span>
+              <div>
+                <p id="condition" class="condition">—</p>
+                <p id="feelsLike" class="muted">Feels like —</p>
+              </div>
+            </div>
+          </div>
+          <div id="weatherArt" class="weather-art" aria-hidden="true"></div>
+        </section>
+
+        <section class="metrics" aria-label="Current weather details">
+          <article class="metric card"><span>Wind</span><strong id="wind">—</strong></article>
+          <article class="metric card"><span>Humidity</span><strong id="humidity">—</strong></article>
+          <article class="metric card"><span>Precipitation</span><strong id="precipitation">—</strong></article>
+          <article class="metric card"><span>UV index</span><strong id="uvIndex">—</strong></article>
+        </section>
+
+        <section class="forecast-section">
+          <div class="section-heading"><h2>Next 24 hours</h2><span id="updatedAt" class="muted"></span></div>
+          <div id="hourlyForecast" class="hourly"></div>
+        </section>
+
+        <section class="forecast-section">
+          <div class="section-heading"><h2>7-day outlook</h2></div>
+          <div id="dailyForecast" class="daily card"></div>
+        </section>
+
+        <footer>Forecast data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></footer>
+      </div>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
